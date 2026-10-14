@@ -84,6 +84,11 @@ a {
     border: 1px solid var(--brd);
 }
 
+#navlinks a:hover,
+#projects a:hover {
+    transform: translateY(-4px);
+}
+
 #theme-switcher {
     margin-left: auto;
     padding: 4px;
@@ -94,6 +99,6 @@ a {
     cursor: pointer;
 }
 
-body, #navbar, #projects a {
+body, #navlinks, #navbar, #navlinks a, #projects a {
     transition: 0.3s;
 }
