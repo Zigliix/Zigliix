@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zigliix Portfolio</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
 </head>
 <body>
     <header id="navbar">
@@ -24,24 +28,23 @@
 
     <div id="projects">
         <h2>My Projects</h2>
-        <div id="YtEvolved" class="project-card">
+        <div id="project-card">
             <h3>YtEvolved</h3>
             <p>YouTube Music Evolved is a lightweight YouTube Music desktop client built with Tauri v2.</p>
             <a target="_blank" rel="noopener noreferrer" href="https://github.com/Zigliix/YtEvolved">See on GitHub</a>
         </div>
 
-        <div class="project-card">
+        <div id="project-card">
             <h3>DiscordLyricsStatus</h3>
             <p>Sync your song lyrics with your Discord status.</p>
-            <a id="DiscordLyricsStatus" target="_blank" rel="noopener noreferrer" href="https://github.com/Zigliix/DiscordLyricsStatus">See on GitHub</a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/Zigliix/DiscordLyricsStatus">See on GitHub</a>
         </div>
     </div>
 
     <div id="info">
-        <h2 id="info">More about me:</h1>
+        <h2>More about me:</h1>
     </div>
-
-    <script src="assets/js/name.js"></script>
+        <script src="assets/js/name.js"></script>
     <script src="assets/js/theme.js"></script>
 </body>
 </html>
