@@ -90,12 +90,12 @@ a {
 }
 
 #navlinks a:hover,
+#socials a:hover,
 #projects a:hover {
     transform: translateY(-4px);
 }
 
 #theme-switcher {
-    margin-left: auto;
     padding: 4px;
     border: 0;
     background: transparent;
@@ -104,10 +104,16 @@ a {
     cursor: pointer;
 }
 
-body, #navlinks, #navbar, #navlinks a, #projects a {
+body, #navlinks, #navbar, #navlinks a, #projects a, #socials a{
     transition: 0.3s;
 }
 
+#socials {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
 .project-card {
     box-sizing: border-box;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
