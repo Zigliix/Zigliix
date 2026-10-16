@@ -9,8 +9,7 @@ function setTheme(theme) {
     localStorage.setItem('theme', theme);
 }
 
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-setTheme(localStorage.getItem('theme') ?? (prefersDark ? 'dark' : 'light'));
+setTheme(localStorage.getItem('theme') ?? 'dark');
 
 let busy = false;
 
