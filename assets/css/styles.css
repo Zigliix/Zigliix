@@ -32,13 +32,23 @@ a {
     text-decoration: none;
 }
 
+#hero {
+    min-height: calc(100vh - 72px);
+    min-height: calc(100svh - 72px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
 #text_role {
-    padding: 32px 24px 8px;
     font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.2;
     letter-spacing: -0.05em;
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0;
+    text-align: center;
 }
 
 #role {
@@ -140,19 +150,4 @@ body, #navlinks, #navbar, #navlinks a, #projects a, #socials a{
     #projects {
         grid-template-columns: 1fr;
     }
-}
-
-/* Circular theme reveal from switcher */
-::view-transition-old(root),
-::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
-}
-
-::view-transition-old(root) {
-    z-index: 1;
-}
-
-::view-transition-new(root) {
-    z-index: 2147483646;
 }

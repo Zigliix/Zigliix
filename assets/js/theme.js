@@ -12,39 +12,27 @@ function setTheme(theme) {
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 setTheme(localStorage.getItem('theme') ?? (prefersDark ? 'dark' : 'light'));
 
-themeSwitcher.addEventListener('click', () => {
-    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+let busy = false;
 
-    if (!document.startViewTransition) {
-        setTheme(newTheme);
-        return;
-    }
+themeSwitcher.addEventListener('click', async () => {
+    if (busy) return;
+    busy = true;
 
-    const rect = themeSwitcher.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
+    const theme = html.dataset.theme !== 'dark' ? 'dark' : 'light';
+    const r = themeSwitcher.getBoundingClientRect();
+    const x = r.left + r.width / 2;
+    const y = r.top + r.height / 2;
+    const d = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+    const c = (v) => `circle(${v}px at ${x}px ${y}px)`;
 
-    const transition = document.startViewTransition(() => {
-        setTheme(newTheme);
-    });
+    const o = document.createElement('div');
+    o.style.cssText = 'position:fixed;inset:0;background:#000;opacity:1;pointer-events:none;z-index:9999';
+    document.documentElement.append(o);
 
-    transition.ready.then(() => {
-        const endRadius = Math.hypot(
-            Math.max(x, window.innerWidth - x),
-            Math.max(y, window.innerHeight - y)
-        );
-        document.documentElement.animate(
-            {
-                clipPath: [
-                    `circle(0px at ${x}px ${y}px)`,
-                    `circle(${endRadius}px at ${x}px ${y}px)`
-                ]
-            },
-            {
-                duration: 600,
-                easing: 'ease-out',
-                pseudoElement: '::view-transition-new(root)'
-            }
-        );
-    });
+    await o.animate({ clipPath: [c(0), c(d)] }, { duration: 450, easing: 'cubic-bezier(0.33,1,0.68,1)', fill: 'both' }).finished.catch(() => {});
+    setTheme(theme);
+    await o.animate({ clipPath: [c(d), c(0)] }, { duration: 450, easing: 'cubic-bezier(0.33,1,0.68,1)', fill: 'both' }).finished.catch(() => {});
+
+    o.remove();
+    busy = false;
 });
