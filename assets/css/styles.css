@@ -45,6 +45,12 @@ a {
     color: #ad5d1a;
 }
 
+#dots {
+    display: inline-block;
+    min-width: 3ch;
+    color: var(--txt);
+}
+
 #navbar {
     position: fixed;
     top: 0;
@@ -121,7 +127,7 @@ body, #navlinks, #navbar, #navlinks a, #projects a, #socials a{
     align-items: center;
     gap: 16px;
 }
-#project-card {
+.project-card {
     box-sizing: border-box;
     box-shadow: var(--card-shadow);
     padding: 24px;
@@ -134,4 +140,19 @@ body, #navlinks, #navbar, #navlinks a, #projects a, #socials a{
     #projects {
         grid-template-columns: 1fr;
     }
+}
+
+/* Circular theme reveal from switcher */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+    z-index: 1;
+}
+
+::view-transition-new(root) {
+    z-index: 2147483646;
 }
