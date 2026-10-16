@@ -148,3 +148,14 @@ body, #navlinks, #navbar, #navlinks a, #projects a, #socials a{
         grid-template-columns: 1fr;
     }
 }
+
+.hidden-element {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.hidden-element.visible {
+  opacity: 1;
+  visibility: visible;
+}
